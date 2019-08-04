@@ -6,8 +6,11 @@ QQQQQ
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
+
+vector<int> V;
 int narr[11];
 bool visit[11] = { false, };
 int n, m;
@@ -29,7 +32,7 @@ int main() {
 	return 0;
 }
 
-void nm_sort(int cnt, int narr[11]) {
+void nm_sort(int cnt, int idx) {
 	if (cnt == m) {
 		for (int i = 0; i < m; i++) {
 			printf("%d ", narr[cnt]);
@@ -40,9 +43,10 @@ void nm_sort(int cnt, int narr[11]) {
 	for (int i = 0; i < n; i++) {
 		if (visit[i] == false) {
 			visit[i] = true;
-			narr[i] = i;
-			nm_sort(cnt+1);
+			V.push_back(Arr[i]);
+			nm_sort(cnt+1, i);
 			visit[i] = false;
+			V.pop_back();
 		}
 	}
 
